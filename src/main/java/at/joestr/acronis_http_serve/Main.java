@@ -58,7 +58,9 @@ public class Main {
       .connectTimeout(Duration.ofSeconds(5))
       .build();
     
-    int port = 8081;
+    int port = Integer.parseInt(
+      INSTANCE.config.getProperty("jetty.port")
+    );
     Server server = new Server(port);
     server.setHandler(new RootHandler());
     server.start();
