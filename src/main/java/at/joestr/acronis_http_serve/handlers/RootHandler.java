@@ -132,7 +132,7 @@ public class RootHandler extends AbstractHandler {
       response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
       response.setContentType("text/html; charset=utf-8");
       PrintWriter out = response.getWriter();
-      out.println("<!doctype html><head><title>" + splittedPath[0] + "/contents</title></head>");
+      out.println("<!doctype html><head><title>contents/" + splittedPath[1] + "</title></head>");
       out.println("<body><table><thead><th>name</th><th>date</th><th>size</th></thead><tbody>");
       
       if (!isRoot) {

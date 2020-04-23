@@ -31,7 +31,7 @@ public class AcronisCredentials {
   private String password;
   private String accessToken;
   private String idToken;
-  private LocalDateTime expiry;
+  private long expiry = 0;
 
   public AcronisCredentials(String username, String password) throws IOException, InterruptedException {
     this.username = username;
@@ -40,11 +40,11 @@ public class AcronisCredentials {
 
   public String getValidAccessToken() throws IOException, InterruptedException {
     
-    if (this.expiry == null) {
-      this.obtainTokens();
-    }
+    long now = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
     
-    if (this.expiry.isBefore(LocalDateTime.now())) {
+    if (this.expiry == 0) {
+      this.obtainTokens();
+    } else if (this.expiry <= now) {
       this.obtainTokens();
     }
     
@@ -71,7 +71,7 @@ public class AcronisCredentials {
     JsonObject root = JsonParser.parseString(response.body()).getAsJsonObject();
     
     this.accessToken = root.get("access_token").getAsString();
-    this.expiry = LocalDateTime.ofEpochSecond( root.get("expires_on").getAsLong(), 0, ZoneOffset.UTC);
+    this.expiry = root.get("expires_on").getAsLong();
     this.idToken = root.get("id_token").getAsString();
     //root.get("token_type").getAsString();
   }
