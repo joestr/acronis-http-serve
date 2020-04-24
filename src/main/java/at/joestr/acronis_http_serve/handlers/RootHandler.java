@@ -20,6 +20,7 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -169,7 +170,7 @@ public class RootHandler extends AbstractHandler {
               + splittedPath[1]
               + "/download"
           ))
-          .header("authorization", "bearer " + Main.getInstance().getCredentials().getValidAccessToken())
+          .header("Authorization", "Bearer " + Main.getInstance().getCredentials().getValidAccessToken())
           .GET()
           .build();
       } catch (InterruptedException ex) {
@@ -187,7 +188,12 @@ public class RootHandler extends AbstractHandler {
         return;
       }
       
+      Optional<String> contentDipositionHeader =
+        httpResponse.headers().firstValue("content-disposition");
       response.setStatus(HttpServletResponse.SC_OK);
+      if (contentDipositionHeader.isPresent()) {
+        response.addHeader("content-disposition", contentDipositionHeader.get());
+      }
       response.setContentType("application/octet-stream");
       ServletOutputStream out = response.getOutputStream();
       
