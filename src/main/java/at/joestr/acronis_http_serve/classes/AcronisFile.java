@@ -5,10 +5,7 @@
  */
 package at.joestr.acronis_http_serve.classes;
 
-import java.time.LocalDate;
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  *
@@ -118,31 +115,4 @@ public class AcronisFile {
   public void setSize(long size) {
     this.size = size;
   }
-
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 11 * hash + Objects.hashCode(this.uuid);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final AcronisFile other = (AcronisFile) obj;
-    if (!Objects.equals(this.uuid, other.uuid)) {
-      return false;
-    }
-    return true;
-  }
-  
-  
 }

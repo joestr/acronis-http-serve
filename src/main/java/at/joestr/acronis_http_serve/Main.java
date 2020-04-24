@@ -24,8 +24,8 @@ import org.eclipse.jetty.server.Server;
  */
 public class Main {
 
-  private static Main INSTANCE = new Main();
-  private Properties config = new Properties();
+  private static final Main INSTANCE = new Main();
+  private final Properties config = new Properties();
   private AcronisCredentials credentials;
   private HttpClient client;
   
@@ -58,10 +58,11 @@ public class Main {
       .connectTimeout(Duration.ofSeconds(5))
       .build();
     
-    int port = Integer.parseInt(
-      INSTANCE.config.getProperty("jetty.port")
+    Server server = new Server(
+      Integer.parseInt(
+        INSTANCE.config.getProperty("jetty.port")
+      )
     );
-    Server server = new Server(port);
     server.setHandler(new RootHandler());
     server.start();
     server.join();

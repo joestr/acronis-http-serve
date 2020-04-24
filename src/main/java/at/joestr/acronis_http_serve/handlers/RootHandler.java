@@ -18,15 +18,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -56,9 +53,6 @@ public class RootHandler extends AbstractHandler {
     Request baseRequest,
     HttpServletRequest request,
     HttpServletResponse response) throws IOException, ServletException {
-    
-    response.setContentType("text/html; charset=utf-8");
-    response.setStatus(HttpServletResponse.SC_OK);
 
     String path = request.getPathInfo().substring(1, request.getPathInfo().length());
     String[] splittedPath = path.split("/");
