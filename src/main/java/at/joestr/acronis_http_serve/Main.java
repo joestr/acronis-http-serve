@@ -9,7 +9,6 @@ import at.joestr.acronis_http_serve.classes.AcronisCredentials;
 import at.joestr.acronis_http_serve.handlers.RootHandler;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.http.HttpClient;
 import java.nio.file.Files;

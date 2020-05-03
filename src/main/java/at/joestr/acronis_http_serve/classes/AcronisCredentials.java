@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 /**
- * Holds the necesarry credential information from the "Acronis File Sync & Share" identity
+ * Holds the necessary credential information from the "Acronis File Sync & Share" identity
  * endpoint.
  * 
  * @author joestr

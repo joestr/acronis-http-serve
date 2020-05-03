@@ -5,8 +5,6 @@
  */
 package at.joestr.acronis_http_serve.classes;
 
-import java.util.Objects;
-
 /**
  *
  * @author Joel
