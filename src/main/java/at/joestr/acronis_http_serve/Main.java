@@ -16,6 +16,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.util.Properties;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
 
 /**
  *
@@ -62,7 +63,13 @@ public class Main {
         INSTANCE.config.getProperty("jetty.port")
       )
     );
-    server.setHandler(new RootHandler());
+    
+    ContextHandler contextHandler = new ContextHandler();
+    contextHandler.setContextPath("/content");
+    contextHandler.setHandler(new RootHandler());
+    
+    server.setHandler(contextHandler);
+    
     server.start();
     server.join();
   }
