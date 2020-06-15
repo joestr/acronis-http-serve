@@ -41,7 +41,7 @@ public class AcronisCredentials {
    * API.
    * 
    * @return An access token for usage with the REST API.
-   * @throws IOException If an  I/O error occurs during the proccess of obtaining an access token.
+   * @throws IOException If an  I/O error occurs during the process of obtaining an access token.
    * @throws InterruptedException If the request/response thread gets interrupted.
    */
   public String getValidAccessToken() throws IOException, InterruptedException {
@@ -61,7 +61,7 @@ public class AcronisCredentials {
   /**
    * This method obtains all tokens from the authentication endpoint.
    * 
-   * @throws IOException If an  I/O error occurs during the proccess of obtaining the tokens.
+   * @throws IOException If an  I/O error occurs during the process of obtaining the tokens.
    * @throws InterruptedException If the request/response thread gets interrupted.
    */
   private void obtainTokens() throws IOException, InterruptedException {
