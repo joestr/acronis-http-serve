@@ -21,6 +21,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -67,11 +68,7 @@ public class RootHandler extends AbstractHandler {
       return;
     }
     
-    boolean isRoot = false;
-    
-    if (splittedPath[1].equalsIgnoreCase("0")) {
-      isRoot = true;
-    } else if (!splittedPath[1].matches("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[34][0-9a-fA-F]{3}-[89ab][0-9a-fA-F]{3}-[0-9a-fA-F]{12}")) {
+		if (!splittedPath[1].matches("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[34][0-9a-fA-F]{3}-[89ab][0-9a-fA-F]{3}-[0-9a-fA-F]{12}")) {
       response.setStatus(HttpServletResponse.SC_NOT_FOUND);
       response.setContentType("text/plain; charset=utf-8");
       PrintWriter out = response.getWriter();
@@ -79,6 +76,12 @@ public class RootHandler extends AbstractHandler {
       baseRequest.setHandled(true);
       return;
     }
+		
+    boolean isRoot = false;
+    
+		if (splittedPath[1].equalsIgnoreCase(new UUID(0L, 0L).toString())) {
+			isRoot = true;
+		}
     
     if (splittedPath[0].equalsIgnoreCase("contents")) {
       HttpRequest httpRequest = null;
